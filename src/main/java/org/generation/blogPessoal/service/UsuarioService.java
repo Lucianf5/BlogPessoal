@@ -51,15 +51,10 @@ public class UsuarioService {
 		}
 	}
 
-	/**
-	 * Metodo para fazer login
-	 * @param user
-	 * @return ResponseEntity com o status HTTP e o token de autenticação
-	 */
+	
 	public ResponseEntity<UserLogin> login(UserLogin user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(user.getUsuario());
-
 		if (usuario.isPresent()) {
 			if (encoder.matches(user.getSenha(), usuario.get().getSenha())) {
 				String auth = user.getUsuario() + ":" + user.getSenha();
@@ -67,8 +62,12 @@ public class UsuarioService {
 				String authHeader = "Basic " + new String(encodedAuth);
 
 				user.setToken(authHeader);
+				user.setId(usuario.get().getId());
 				user.setNome(usuario.get().getNome());
-
+				user.setFoto(usuario.get().getFoto());
+				user.setTipo(usuario.get().getTipo());
+				
+				
 				return ResponseEntity.status(202).body(user);
 			}
 
