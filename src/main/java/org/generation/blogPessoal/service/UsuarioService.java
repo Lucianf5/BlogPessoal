@@ -51,6 +51,11 @@ public class UsuarioService {
 		}
 	}
 
+	/**
+	 * Metodo para fazer login
+	 * @param user
+	 * @return ResponseEntity com o status HTTP e o token de autenticação
+	 */
 	
 	public ResponseEntity<UserLogin> login(UserLogin user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
