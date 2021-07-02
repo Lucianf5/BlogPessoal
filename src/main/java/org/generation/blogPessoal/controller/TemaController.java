@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/ tema")
+@RequestMapping("/tema")
 public class TemaController {
 	
 	@Autowired
