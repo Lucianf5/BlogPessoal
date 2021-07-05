@@ -34,12 +34,12 @@ public class TemaController {
 		return temaService.findAll();
 	}
 
-	@GetMapping(params = "/{id}")
+	@GetMapping(params = "id")
 	public ResponseEntity<Tema> getById(@Valid @RequestParam Long id) {
 		return temaService.findById(id);
 	}
 
-	@GetMapping(params = "/nome/{nome}")
+	@GetMapping(params = "descricao")
 	public ResponseEntity<List<Tema>> getByDescricao(@RequestParam String descricao) {
 		return temaService.findByDescricao(descricao);
 	}
@@ -54,7 +54,7 @@ public class TemaController {
 		return temaService.updateTema(tema);
 	}
 
-	@DeleteMapping(params = "/{id}")
+	@DeleteMapping(params = "id")
 	public ResponseEntity<Tema> deleteTema(@RequestParam Long id) {
 		return temaService.deletePostagem(id);
 	}
