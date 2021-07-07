@@ -4,8 +4,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.codec.binary.Base64;
-
-
+import org.generation.blogPessoal.model.Postagem;
 import org.generation.blogPessoal.model.UserLogin;
 import org.generation.blogPessoal.model.Usuario;
 import org.generation.blogPessoal.repository.UsuarioRepository;
@@ -34,6 +33,20 @@ public class UsuarioService {
 		}
 	}
 	
+	
+	
+	/**
+	 * Metodo para buscar uma usuario por ID
+	 * 
+	 * @param id
+	 * @return ResponseEntity com o status HTTP e a postagem
+	 */
+	
+	public ResponseEntity<Usuario> findById(Long id) {
+		return usuarioRepository.findById(id).map(resp -> ResponseEntity.status(200).body(resp))
+				.orElse(ResponseEntity.status(404).build());
+	}
+	
 	/**
 	 * Metodo para salvar um usuario na base de dados encriptando a sua senha
 	 * @param novoUsuario
@@ -50,6 +63,23 @@ public class UsuarioService {
 			return ResponseEntity.status(400).build();
 		}
 	}
+	
+	/**
+	 * Metodo para alterar uma usuario
+	 * 
+	 * @param alterPostagem
+	 * @return ResponseEntity com o status HTTP e a postagem alterada
+	 */
+	
+	public ResponseEntity<Usuario> updateUsuario(Usuario alterUsuario) {
+		if (usuarioRepository.existsById(alterUsuario.getId())){
+			return ResponseEntity.status(200).body(usuarioRepository.save(alterUsuario));
+		} else {
+			return ResponseEntity.status(404).build();
+		}
+}
+	
+		
 
 	/**
 	 * Metodo para fazer login
