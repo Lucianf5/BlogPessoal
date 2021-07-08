@@ -75,14 +75,15 @@ public class Postagem {
 		this.texto = texto;
 	}
 
-	public Date getDate() {
+	
+	public Date getData() {
 		return data;
 	}
 
-	public void setDate(Date date) {
-		this.data = date;
+	public void setData(Date data) {
+		this.data = data;
 	}
-	
+
 	public Tema getTema() {
 		return tema;
 	}
