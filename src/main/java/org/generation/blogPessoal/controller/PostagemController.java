@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/postagens")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
 	
 	@Autowired
@@ -39,8 +39,8 @@ public class PostagemController {
 	}
 
 
-	@GetMapping(params = "titulo")
-	public ResponseEntity<List<Postagem>> getByTitulo(@RequestParam String titulo) {
+	@GetMapping("/titulo")
+	public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo) {
 		return postagemService.findByTitulo(titulo);
 	}
 
@@ -54,8 +54,8 @@ public class PostagemController {
 		return postagemService.updatePostagem(postagem);
 	}
 
-	@DeleteMapping(params = "id")
-	public ResponseEntity<Postagem> deletePostagem(@RequestParam Long id) {
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Postagem> deletePostagem(@PathVariable Long id) {
 		return postagemService.deletePostagem(id);
 	}
 

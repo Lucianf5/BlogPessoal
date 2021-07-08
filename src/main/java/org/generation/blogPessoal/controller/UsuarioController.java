@@ -18,7 +18,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -37,9 +37,8 @@ public class UsuarioController {
 	}
 	
 	
-	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
+	public ResponseEntity<Usuario> getById(@Valid @PathVariable Long id) {
 		return usuarioService.findById(id);
 	}
 
